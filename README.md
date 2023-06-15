@@ -23,11 +23,69 @@ flutter pub add vorun
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Create your value objects (choose the appropriate base classes):
 
 ```dart
-const like = 'sample';
+import 'package:vorun/vorun.dart';
+
+class AccountId extends IntValueObject {
+  const AccountId(super.value);
+}
+
+class RoleId extends IntValueObject {
+  const RoleId(super.value);
+}
+```
+
+And then you can use instances of these objects to have type safety beyond primitives:
+
+```dart
+const someAccountId = AccountId(123);
+sendWelcomeMail(someAccountId);
+
+void sendWelcomeMail(AccountId accountId) { /*...*/ }
+
+const someRoleId = RoleId(123);
+sendWelcomeMail(someRoleId); // Oops! Compile error
+```
+
+The included bases classes (`DoubleValueObject`, `IntValueObject` and `StringValueObject`) provide
+solid bases for your business logic. They expose _most_ functions of the values they are wrapping:
+
+```dart
+import 'package:vorun/vorun.dart';
+
+class InvoiceItemPrice extends DoubleValueObject {
+  const InvoiceItemPrice(super.value);
+}
+
+class InvoiceSum extends DoubleValueObject {
+  const InvoiceSum._(super.value);
+
+  factory InvoiceSum.fromItems(Iterable<InvoiceItemPrice> items) {
+    var sum = 0.0;
+    for (var item in items) {
+      sum += item.value;
+    }
+
+    return InvoiceSum._(sum);
+  }
+}
+
+main() {
+  var someItemPrice = InvoiceItemPrice(123.456);
+  var anotherItemPrice = InvoiceItemPrice(456.123);
+
+  // use operators
+  var sum = someItemPrice + anotherItemPrice;
+
+  print(sum); // 579.579
+
+  // or another value object for added type safety!
+  var invoiceSum = InvoiceSum.fromItems([someItemPrice, anotherItemPrice]);
+
+  print(invoiceSum); // InvoiceSum(579.579)
+}
 ```
 
 ## Additional information
