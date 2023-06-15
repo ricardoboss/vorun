@@ -53,8 +53,6 @@ The included bases classes (`DoubleValueObject`, `IntValueObject` and `StringVal
 solid bases for your business logic. They expose _most_ functions of the values they are wrapping:
 
 ```dart
-import 'package:vorun/vorun.dart';
-
 class InvoiceItemPrice extends DoubleValueObject {
   const InvoiceItemPrice(super.value);
 }
