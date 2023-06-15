@@ -6,13 +6,13 @@ void main() {
     const a = IntValueObject(123);
     const b = IntValueObject(456);
 
-    expect((a + b).value, 123 + 456);
-    expect((a - b).value, 123 - 456);
-    expect((a * b).value, 123 * 456);
-    expect((a / b).value, 123 / 456);
-    expect((a ~/ b).value, 123 ~/ 456);
-    expect((a % b).value, 123 % 456);
-    expect((-a).value, -123);
+    expect(a + b, 123 + 456);
+    expect(a - b, 123 - 456);
+    expect(a * b, 123 * 456);
+    expect(a / b, 123 / 456);
+    expect(a ~/ b, 123 ~/ 456);
+    expect(a % b, 123 % 456);
+    expect(-a, -123);
 
     expect(a < b, 123 < 456);
     expect(a > b, 123 > 456);
@@ -29,12 +29,12 @@ void main() {
     const a = DoubleValueObject(12.3);
     const b = DoubleValueObject(45.6);
 
-    expect((a + b).value, 12.3 + 45.6);
-    expect((a - b).value, 12.3 - 45.6);
-    expect((a * b).value, 12.3 * 45.6);
-    expect((a / b).value, 12.3 / 45.6);
-    expect((a ~/ b).value, 12.3 ~/ 45.6);
-    expect((a % b).value, 12.3 % 45.6);
+    expect(a + b, 12.3 + 45.6);
+    expect(a - b, 12.3 - 45.6);
+    expect(a * b, 12.3 * 45.6);
+    expect(a / b, 12.3 / 45.6);
+    expect(a ~/ b, 12.3 ~/ 45.6);
+    expect(a % b, 12.3 % 45.6);
     expect(-a.value, -12.3);
 
     expect(a < b, 12.3 < 45.6);
